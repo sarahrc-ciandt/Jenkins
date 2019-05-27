@@ -1,0 +1,5 @@
+FROM postgres
+WORKDIR /opt
+COPY acesso_init.sql /opt/acesso_init.sql
+EXPOSE 5432
+

@@ -1,14 +1,14 @@
-pipeline {
-    agent { 
-        docker { 
-            image 'maven:3.5.2-jdk-8' 
-            } 
-        }
+pipeline {    
     stages {
-        stage('build') {
+        stage('build images') {
             steps {
-                sh 'mvn --version'
+                sh 'docker build -t postgres_db -f db/DockerFile .'
             }
         }
+        stage('docker-compose') {
+            steps {
+                sh 'docker-compose -f docker-compose.yml up'
+            }
+        }        
     }
 }
