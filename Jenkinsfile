@@ -1,15 +1,15 @@
 pipeline {
-    agent none
+    agent any
     stages {
-        stage('build images') {
+        stage('Data Base') {            
             steps {
                 sh 'docker build -t postgres_db -f db/DockerFile .'
             }
         }
-        // stage('docker-compose') {
-        //     steps {
-        //         sh 'docker-compose -f docker-compose.yml up'
-        //     }
-        // }        
+        stage('Java Application') {
+            steps {
+                sh 'docker-compose -f docker-compose.yml up'
+            }
+        }        
     }
 }
