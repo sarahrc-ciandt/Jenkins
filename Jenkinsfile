@@ -3,9 +3,7 @@ pipeline {
     stages {
         stage('Data Base') {       
             agent {
-                dockerfile {
-                    dir 'db'
-                }
+                docker {image 'postgres' }
             }
             steps {
                 acho 'Hello, Data Base'
