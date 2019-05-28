@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('build images') {
             steps {
-                sh 'docker build -t postgres_db -f db/DockerFile .'
+                sh 'docker build -t postgres_db -f DockerFile \db'
             }
         }
         stage('docker-compose') {
