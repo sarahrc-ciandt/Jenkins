@@ -5,7 +5,6 @@ pipeline {
             agent {
                 dockerfile {
                     dir 'db'
-                    label 'my-defined-label'
                 }
             }
             steps {
