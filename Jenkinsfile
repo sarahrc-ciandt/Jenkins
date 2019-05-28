@@ -8,7 +8,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'docker build -t postgres_db -f db/DockerFile .'
+                acho 'Hello, Data Base'
             }
         }
         // stage('Java Application') {
