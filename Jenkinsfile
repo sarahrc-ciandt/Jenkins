@@ -5,5 +5,6 @@ node() {
         sh "docker build -t postgres_db -f db/Dockerfile ."
   
     stage 'Application'
-        sh "docker-compose -f docker-compose.yml up"
+        sh 'whoami'
+        // sh "docker-compose -f docker-compose.yml up"
 }
