@@ -6,7 +6,7 @@ pipeline {
                 docker {image 'postgres' }
             }
             steps {
-                acho 'Hello, Data Base'
+                echo 'Hello, Data Base'
             }
         }
         // stage('Java Application') {
