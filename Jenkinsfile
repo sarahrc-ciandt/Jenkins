@@ -3,10 +3,12 @@ pipeline {
     stages {
         stage('Data Base') {       
             agent {
-                docker {image 'postgres' }
+                docker {
+                    image 'postgres' 
+                }
             }
             steps {
-                echo 'Hello, Data Base'
+                sh 'docker-compose -f docker-compose.yml up'
             }
         }
         // stage('Java Application') {
