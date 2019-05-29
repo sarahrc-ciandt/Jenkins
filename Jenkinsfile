@@ -1,20 +1,9 @@
-pipeline {
-    agent none
-    stages {
-        stage('Data Base') {       
-            agent {
-                docker {
-                    image 'postgres' 
-                }
-            }
-            steps {
-                sh 'docker-compose -f docker-compose.yml up'
-            }
-        }
-        // stage('Java Application') {
-        //     steps {
-        //         sh 'docker-compose -f docker-compose.yml up'
-        //     }
-        // }        
-    }
+node('docker') { 
+    stage 'Checkout'
+        checkout scm
+    stage 'Build Image'
+        sh "docker build -t postgres_db -f db/Dockerfile ."
+  
+    stage 'Application'
+        sh "docker-compose -f docker-compose.yml up"
 }
