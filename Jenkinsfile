@@ -1,11 +1,16 @@
 node() { 
     stage 'Checkout'
         checkout scm
-    stage 'Build Image'
+
+    stage 'Installing prerequisites packages'
+        sh 'apk add py-pip'
+        sh 'apk add python-dev libffi-dev openssl-dev gcc libc-dev make'
+        sh 'pip install docker-compose'
+        sh 'docker-compose --version'       
+
+    stage 'Build DataBase Image'
         sh "docker build -t postgres_db -f db/Dockerfile ."
   
-    stage 'Application'
-        sh 'curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose'
-        sh 'chmod +x /usr/local/bin/docker-compose'
-        sh "/usr/local/bin/docker-compose -f docker-compose.yml up"
+    stage 'Java Application'       
+        sh "docker-compose -f docker-compose.yml up"
 }
