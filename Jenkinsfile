@@ -17,7 +17,9 @@ node() {
 
     stage 'Running Sonar'
         try {
-            sh 'docker-compose --version'
+            sh 'cd SonarApplication/javaparser-maven-sample/'
+            sh 'mvn clean verify sonar:sonar'
+            sh 'mvn clean package sonar:sonar'            
         }
         catch(all) {
             buildStatus = "FAILURE"
@@ -29,6 +31,5 @@ node() {
     
         stage 'Java Application'
             sh "docker-compose -f docker-compose.yml up -d"
-    }
-    
+    }    
 }
