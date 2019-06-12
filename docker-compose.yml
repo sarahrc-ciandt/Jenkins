@@ -1,11 +1,13 @@
 version: '3'
 services:
   db:
+    container_name: data_base
     image: postgres_db
     environment:
       - POSTGRES_PASSWORD=postgres     
   
   migrator:
+    container_name: data_base_migrator
     image: postgres_db
     environment:
       - POSTGRES_PASSWORD=postgres
@@ -14,6 +16,7 @@ services:
                PGPASSWORD=postgres psql --host=db --port=5432 --username=postgres --file /opt/acesso_init.sql"
   
   application:
+    container_name: java_application
     build:
       context: .
       dockerfile: Dockerfile

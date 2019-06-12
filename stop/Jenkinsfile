@@ -1,0 +1,9 @@
+node() { 
+    stage 'Stop data base'
+        sh 'docker stop data_base'
+        sh 'docker rm data_basedocke'
+
+     stage 'Stop java application'
+        sh 'docker stop java_application'
+        sh 'docker rm java_application'
+}
