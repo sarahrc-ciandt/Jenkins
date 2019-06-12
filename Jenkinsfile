@@ -12,5 +12,5 @@ node() {
         sh "docker build -t postgres_db -f db/Dockerfile ."
   
     stage 'Java Application'       
-        sh "docker-compose -f docker-compose.yml up"
+        sh "docker-compose -f docker-compose.yml up -d"
 }
