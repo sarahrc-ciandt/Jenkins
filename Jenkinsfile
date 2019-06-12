@@ -15,8 +15,9 @@ node() {
         }               
 
     stage 'Build DataBase Image'
-        sh "docker build -t postgres_db -f db/Dockerfile ."
-  
+        sh "docker build -t postgres_db -f db/Dockerfile ."  
+    
     stage 'Java Application'       
+        sh 'pwd;ls'
         sh "docker-compose -f docker-compose.yml up -d"
 }
