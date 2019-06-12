@@ -1,4 +1,4 @@
-def buildStatus = "SUCSESS"
+def buildStatus = "SUCCESS"
 
 node() { 
     stage 'Checkout'
@@ -23,7 +23,7 @@ node() {
             buildStatus = "FAILURE"
         }
 
-    if (buildStatus == "SUCESS") {
+    if (buildStatus == "SUCCESS") {
         stage 'Build DataBase Image'
             sh "docker build -t postgres_db -f db/Dockerfile ."  
     
