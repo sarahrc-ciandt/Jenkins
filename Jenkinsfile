@@ -1,3 +1,5 @@
+def buildStatus = "SUCSESS"
+
 node() { 
     stage 'Checkout'
         checkout scm
@@ -13,9 +15,20 @@ node() {
             sh 'pip install docker-compose'
         }               
 
-    stage 'Build DataBase Image'
-        sh "docker build -t postgres_db -f db/Dockerfile ."  
+    stage 'Running Sonar'
+        try {
+            sh 'docker-compose --version'
+        }
+        catch(all) {
+            buildStatus = "FAILURE"
+        }
+
+    if (buildStatus == "SUCESS") {
+        stage 'Build DataBase Image'
+            sh "docker build -t postgres_db -f db/Dockerfile ."  
     
-    stage 'Java Application'
-        sh "docker-compose -f docker-compose.yml up -d"
+        stage 'Java Application'
+            sh "docker-compose -f docker-compose.yml up -d"
+    }
+    
 }
