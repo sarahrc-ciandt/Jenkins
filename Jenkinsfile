@@ -17,7 +17,7 @@ node() {
 
     stage 'Running Sonar'
         try {
-            sh 'cd SonarApplication/javaparser-maven-sample/'
+            sh 'cd SonarApplication/'
             sh 'mvn clean verify sonar:sonar'
             sh 'mvn clean package sonar:sonar'            
         }
