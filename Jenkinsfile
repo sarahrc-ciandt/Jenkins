@@ -4,7 +4,7 @@ node() {
     stage 'Checkout'
         checkout scm
 
-    stage 'Verifying if docker-compose exists'
+    stage 'Checking dependencies'
         try {
             sh 'docker-compose --version'
         }
@@ -13,14 +13,19 @@ node() {
             sh 'apk add py-pip'
             sh 'apk add python-dev libffi-dev openssl-dev gcc libc-dev make'
             sh 'pip install docker-compose'
-        }               
-
-    stage 'Running Sonar'
+        }    
         try {
-            sh 'cd SonarApplication/'
-            sh 'mvn clean verify sonar:sonar'
-            sh 'mvn clean package sonar:sonar'            
+            sh 'mvn --version'
         }
+        catch(all) {
+            echo 'Installing maven'
+            sh 'apk add maven'
+        }           
+
+    stage 'Running Sonar'        
+        try {
+            sh '(cd SonarApplication/; mvn clean verify sonar:sonar; mvn clean package sonar:sonar)'           
+        }          
         catch(all) {
             buildStatus = "FAILURE"
         }
