@@ -35,10 +35,6 @@ node() {
             sh "docker build -t postgres_db -f db/Dockerfile ."  
     
         stage 'Java Application'
-            sh "docker-compose up -d"
-
-        stage 'Configuring DataBase'
-            sh 'docker exec -it data_base su - postgres'
-            sh 'PGPASSWORD=postgres psql --host=db --port=5432 --username=postgres --file /opt/acesso_init.sql'
+            sh "docker-compose up -d"        
     }    
 }
