@@ -4,16 +4,7 @@ services:
     container_name: data_base
     image: postgres_db
     environment:
-      - POSTGRES_PASSWORD=postgres     
-  
-  migrator:
-    container_name: data_base_migrator
-    image: postgres_db
-    environment:
-      - POSTGRES_PASSWORD=postgres
-    command: >
-      bash -c "su - postgres && 
-               PGPASSWORD=postgres psql --host=db --port=5432 --username=postgres --file /opt/acesso_init.sql"
+      - POSTGRES_PASSWORD=postgres       
   
   application:
     container_name: java_application
