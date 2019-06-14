@@ -6,6 +6,5 @@ node() {
         sh './dockerRunSonar.sh'
 
     stage 'Java Application'
-        sh "./dockerRunApplication.sh"        
-    }    
+        sh "./dockerRunApplication.sh"       
 }
