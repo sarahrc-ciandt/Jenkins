@@ -1,40 +1,11 @@
-def buildStatus = "SUCCESS"
-
 node() { 
     stage 'Checkout'
-        checkout scm
-
-    stage 'Checking dependencies'
-        try {
-            sh 'docker-compose --version'
-        }
-        catch(all) {
-            echo 'Installing docker-compose'
-            sh 'apk add py-pip'
-            sh 'apk add python-dev libffi-dev openssl-dev gcc libc-dev make'
-            sh 'pip install docker-compose'
-        }    
-        try {
-            sh 'mvn --version'
-        }
-        catch(all) {
-            echo 'Installing maven'
-            sh 'apk add maven'
-        }           
+        checkout scm    
 
     stage 'Running Sonar'        
-        try {
-            sh '(cd SonarApplication/; mvn clean verify sonar:sonar; mvn clean package sonar:sonar)'           
-        }          
-        catch(all) {
-            buildStatus = "FAILURE"
-        }
+        sh './dockerRunSonar.sh'
 
-    if (buildStatus == "SUCCESS") {
-        stage 'Build DataBase Image'
-            sh "docker build -t postgres_db -f db/Dockerfile ."  
-    
-        stage 'Java Application'
-            sh "docker-compose up -d"        
+    stage 'Java Application'
+        sh "./dockerRunApplication.sh"        
     }    
 }

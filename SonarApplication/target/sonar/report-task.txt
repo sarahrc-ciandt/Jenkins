@@ -1,6 +1,6 @@
 projectKey=com.yourorganization:javaparser-maven-sample
-serverUrl=http://localhost:9000
+serverUrl=http://172.17.0.3:9000
 serverVersion=7.7.0.23042
-dashboardUrl=http://localhost:9000/dashboard?id=com.yourorganization%3Ajavaparser-maven-sample
-ceTaskId=AWtNKO5C4pOCeosD161F
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AWtNKO5C4pOCeosD161F
+dashboardUrl=http://172.17.0.3:9000/dashboard?id=com.yourorganization%3Ajavaparser-maven-sample
+ceTaskId=AWtWZyGF4pOCeosD161b
+ceTaskUrl=http://172.17.0.3:9000/api/ce/task?id=AWtWZyGF4pOCeosD161b
