@@ -3,8 +3,8 @@ node() {
         checkout scm    
 
     stage 'Running Sonar'        
-        sh './dockerRunSonar.sh $(pwd)'
+        sh './dockerRunSonar.sh "$(pwd)"'
 
     stage 'Java Application'
-        sh "./dockerRunApplication.sh $(pwd)"       
+        sh './dockerRunApplication.sh "$(pwd)"' 
 }
