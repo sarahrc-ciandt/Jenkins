@@ -1,9 +1,10 @@
 #!/bin/bash
 
-docker run -i --rm --name my-maven-project  \
-    maven_git \
-    pwd &&\
-    git clone https://github.com/sarahrc-ciandt/Jenkins.git &&\
-    cd Jenkins/SonarApplication &&\
+docker run -i --rm --name maven-project  \
+    -v /var/lib/docker/volumes/jenkins-data/_data/workspace/JavaApplication/SonarApplication:/usr/src/maven-project \
+    -w /usr/src/maven-project \
+    maven:ibmjava-alpine \    
     mvn sonar:sonar \
     -Dsonar.host.url=http://172.17.0.3:9000
+
+
