@@ -4,7 +4,7 @@ node() {
 
     stage 'Running Sonar'        
         
-        docker.image('maven_git').withRun('-i --rm --name my-maven-project') { c ->
+        docker.image('maven_git').withRun('--name my-maven-project') { c ->
             sh 'pwd'
             sh 'git clone https://github.com/sarahrc-ciandt/Jenkins.git'
             sh 'cd Jenkins/SonarApplication'
