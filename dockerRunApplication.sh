@@ -12,6 +12,7 @@ do
         -w /usr/src/mydocker \
         dduportal/docker-compose \
         up -d
+        
 done
 
      
