@@ -2,6 +2,7 @@
 
 docker run -i --rm --name my-maven-project  \
     maven_git \
+    pwd &&\
     git clone https://github.com/sarahrc-ciandt/Jenkins.git &&\
     cd Jenkins/SonarApplication &&\
     mvn sonar:sonar \
