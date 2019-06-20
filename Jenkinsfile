@@ -16,7 +16,7 @@ node() {
 
     stage('Migration DataBase') {
         sh 'docker cp db/acesso_init.sql data_base:/opt/acesso_init.sql'
-        sh 'docker exec data_base su - postgres && PGPASSWORD=postgres psql --host=localhost --port=5432 --username=postgres --file /opt/acesso_init.sql'
+        sh '(docker exec data_base su - postgres && PGPASSWORD=postgres psql --host=localhost --port=5432 --username=postgres --file /opt/acesso_init.sql)'
 
     }
 
