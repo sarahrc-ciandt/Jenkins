@@ -5,19 +5,8 @@ services:
     image: postgres
     environment:
       - POSTGRES_PASSWORD=postgres
-    expose:
-      - "5432"
-  
-  migrator:  
-    container_name: data_base_migrator  
-    image: postgres_db
-    environment:
-      - POSTGRES_PASSWORD=postgres
-    command: >
-      bash -c "su - postgres && 
-               PGPASSWORD=postgres psql --host=db --port=5432 --username=postgres --file /opt/acesso_init.sql"
-    depends_on:
-      - db
+    ports:
+      - "5432:5432"
   
   application:
     container_name: java_application
