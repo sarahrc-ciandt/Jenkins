@@ -6,7 +6,7 @@ node() {
     stage('Running Sonar') {
         docker.image('maven:ibmjava-alpine').inside {             
             sh '''cd SonarApplication'''
-            sh '''mvn sonar:sonar -Dsonar.host.url=http://172.17.0.2:9000)'''        
+            sh '''mvn sonar:sonar -Dsonar.host.url=http://172.17.0.2:9000'''        
         }
     }
 
