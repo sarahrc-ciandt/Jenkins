@@ -16,4 +16,5 @@ node() {
     stage('Migration DataBase') {            
         sh './migration.sh' 
     } 
+    
 }
