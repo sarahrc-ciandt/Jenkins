@@ -13,9 +13,7 @@ node() {
         sh 'docker-compose up -d'
     }
 
-    stage('Migration DataBase') {
-        docker.image('postgres').inside('--network=javaapplication_new') {             
-            sh 'PGPASSWORD=postgres psql --host=db --port=5432 --username=postgres --file db/acesso_init.sql'       
-        }
+    stage('Migration DataBase') {            
+        sh 'PGPASSWORD=postgres psql --host=db --port=5432 --username=postgres --file db/acesso_init.sql' 
     } 
 }

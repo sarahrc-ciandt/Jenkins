@@ -7,8 +7,6 @@ services:
       - POSTGRES_PASSWORD=postgres
     ports:
       - "5432"
-    networks:
-      - new
   
   application:
     container_name: java_application
@@ -23,9 +21,9 @@ services:
       - "9094:9095"
     depends_on:
       - db
-    networks:
-      - new  
 
 networks:
-  new:
+  default:    
+    external: true
+    name: jenkins_default
   
