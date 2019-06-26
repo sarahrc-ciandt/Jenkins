@@ -14,6 +14,6 @@ node() {
     }
 
     stage('Migration DataBase') {            
-        sh 'PGPASSWORD=postgres psql --host=db --port=5432 --username=postgres --file db/acesso_init.sql' 
+        sh './migration.sh' 
     } 
 }

@@ -1,12 +1,25 @@
-#!/bin/bash
-     
-echo "Coping Files..."
-docker cp db/acesso_init.sql data_base:opt/acesso_init.sql
+#!/bin/bash     
 
-echo 'Executing Migration ..'
-docker exec data_base bash -c 'su - postgres && \
+i=0
+status=1
+
+while [ $i -lt 3 ]
+do
+    echo 'Executing Migration'
     PGPASSWORD=postgres psql \
-    --host=db \
-    --port=5432 \
-    --username=postgres \
-    --file db/acesso_init.sql'
+        --host=db \
+        --port=5432 \
+        --username=postgres \
+        --file db/acesso_init.sql && ((status=0))  
+    if [[ "$status" == '0' ]]; then
+        echo 'Migration completed!'
+        break
+    fi
+    echo 'Something went wrong. Trying again in 10 seconds...'
+    sleep 10
+    ((i++))
+done
+
+echo 'Migration failed!'
+
+
