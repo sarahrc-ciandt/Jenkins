@@ -24,6 +24,6 @@ services:
 
 networks:
   default:    
-    external: true
-    name: jenkins_default
+    external:
+      name: jenkins_default
   
