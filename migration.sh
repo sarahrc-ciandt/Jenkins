@@ -19,7 +19,3 @@ do
     sleep 10
     ((i++))
 done
-
-echo 'Migration failed!'
-
-
