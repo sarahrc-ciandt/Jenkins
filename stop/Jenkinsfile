@@ -1,7 +1,4 @@
 node() { 
     stage 'Stopping and Removing Containers'
-        sh 'docker stop data_base'
-        sh 'docker rm data_base'     
-        sh 'docker stop java_application'
-        sh 'docker rm java_application'
+        sh 'docker-compose -p java-project down'
 }
