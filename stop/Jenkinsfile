@@ -1,4 +1,5 @@
 node() { 
-    stage 'Stopping and Removing Containers'
+    stage ('Stopping and Removing Containers') {
         sh 'docker-compose -p java-project down'
+    }
 }
