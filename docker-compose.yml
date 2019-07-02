@@ -17,10 +17,13 @@ services:
         USERNAME: "postgres"
         PASSWORD: "postgres"
         DATASOURCE_URL: "jdbc:postgresql://db:5432/postgres"
+        LOG_PATH: "/opt/logs/spring-boot-app.log"
     ports:
       - "9094:9095"
     depends_on:
       - db
+    volumes:
+       - /home/sarahrc/Exemplos/logs:/opt/logs
 
 networks:
   default:    

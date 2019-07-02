@@ -10,7 +10,7 @@ node() {
     }
 
     stage('Java Application') {
-        sh 'docker-compose -p java-project up -d'
+        sh 'docker-compose -p java-project up --build -d'
     }
 
     stage('Migration DataBase') {            
