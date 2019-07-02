@@ -3,5 +3,5 @@ WORKDIR /opt
 COPY acesso.jar /opt/acesso.jar
 EXPOSE 9095
 
-ENTRYPOINT [ "java", "-Dspring.datasource.url=${DATASOURCE_URL}", "-Dspring.datasource.username=${USERNAME}", "-Dspring.datasource.password=${PASSWORD}", "-Djava.util.logging.config.file=${LOG_PATH}" ]
+ENTRYPOINT [ "java", "-Dspring.datasource.url=${DATASOURCE_URL}", "-Dspring.datasource.username=${USERNAME}", "-Dspring.datasource.password=${PASSWORD}", "-Djava.util.logging.file=${LOG_PATH}" ]
 CMD ["-jar", "/opt/acesso.jar", ">> /opt/logs/java.txt" ]
